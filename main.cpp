@@ -31,8 +31,10 @@ int main() {
     cv::imshow("imgRed", imgRed);
 
     // split the original image into Hue, Saturation, and Value channels
+    cv::Mat imgHsv;
+    cv::cvtColor(imgOriginal, imgHsv, CV_BGR2HSV);
     std::vector<cv::Mat> imgHsvColorChannels;
-    cv::split(imgOriginal, imgHsvColorChannels);    
+    cv::split(imgHsv, imgHsvColorChannels);
     cv::Mat imgHue = imgHsvColorChannels[0];
     cv::Mat imgSat = imgHsvColorChannels[1];
     cv::Mat imgVal = imgHsvColorChannels[2];
@@ -43,8 +45,10 @@ int main() {
     cv::imshow("imgVal", imgVal);
 
     // split the original image into Luminance, A, and B channels
+    cv::Mat imgLab;
+    cv::cvtColor(imgOriginal, imgLab, CV_BGR2Lab);
     std::vector<cv::Mat> imgLabColorChannels;
-    cv::split(imgOriginal, imgLabColorChannels);
+    cv::split(imgLab, imgLabColorChannels);
     cv::Mat imgLum = imgLabColorChannels[0];
     cv::Mat imgA = imgLabColorChannels[1];
     cv::Mat imgB = imgLabColorChannels[2];
